@@ -37,15 +37,15 @@ For documentation, visit the [ATL Payment Documentation](https://doc.atlpay.com/
 
 == Screenshots ==
 1. **ATL Payment Gateway Settings**  
-   ![Screenshot 1](https://github.com/AbdullahDalgic/wp-atl-payment-gateway/assets/screenshots/screenshot1.png)
+   ![Screenshot 1](https://raw.githubusercontent.com/AbdullahDalgic/wp-atl-payment-gateway/refs/heads/master/assets/screenshots/screenshot1.jpg)
    Configure your ATL Payment settings, including API Key, Callback URL, and redirection settings.
 
 2. **Checkout with ATL Payment Gateway**  
-   ![Screenshot 2](https://github.com/AbdullahDalgic/wp-atl-payment-gateway/assets/screenshots/screenshot2.png)
+   ![Screenshot 2](https://raw.githubusercontent.com/AbdullahDalgic/wp-atl-payment-gateway/refs/heads/master/assets/screenshots/screenshot2.jpg)
    Customers can select ATL Payment Gateway during checkout.
 
 3. **Order Details with Transaction Code**  
-   ![Screenshot 3](https://github.com/AbdullahDalgic/wp-atl-payment-gateway/assets/screenshots/screenshot3.png)
+   ![Screenshot 3](https://raw.githubusercontent.com/AbdullahDalgic/wp-atl-payment-gateway/refs/heads/master/assets/screenshots/screenshot3.jpg)
    View transaction details in the WooCommerce order notes.
 
 == Frequently Asked Questions ==
