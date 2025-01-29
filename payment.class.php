@@ -10,8 +10,8 @@ class WC_ATL_Payment_Gateway extends WC_Payment_Gateway
   public function __construct()
   {
     $this->id                 = 'atl_payment';
-    $this->method_title       = __('ATL Payment', 'atl-payment');
-    $this->method_description = __('A custom payment gateway for ATL Payment. <a target="_blank" href="https://doc.atlpay.com/docs/category/getting-started">Atl Payment Documentation</a>', 'atl-payment');
+    $this->method_title       = __('ATL Payment', 'atl-payment-gateway');
+    $this->method_description = __('A custom payment gateway for ATL Payment. <a target="_blank" href="https://doc.atlpay.com/docs/category/getting-started">Atl Payment Documentation</a>', 'atl-payment-gateway');
     $this->supports           = array('products');
 
     // Initialize settings
@@ -36,66 +36,66 @@ class WC_ATL_Payment_Gateway extends WC_Payment_Gateway
   {
     $this->form_fields = array(
       'enabled'      => array(
-        'title'   => __('Enable/Disable', 'atl-payment'),
+        'title'   => __('Enable/Disable', 'atl-payment-gateway'),
         'type'    => 'checkbox',
-        'label'   => __('Enable ATL Payment', 'atl-payment'),
+        'label'   => __('Enable ATL Payment', 'atl-payment-gateway'),
         'default' => 'yes',
       ),
       'debug' => array(
-        'title'       => __('Debug Mode', 'atl-payment'),
+        'title'       => __('Debug Mode', 'atl-payment-gateway'),
         'type'        => 'checkbox',
-        'label'       => __('Enable logging', 'atl-payment'),
+        'label'       => __('Enable logging', 'atl-payment-gateway'),
         'default'     => 'no',
       ),
       'title'        => array(
-        'title'       => __('Title', 'atl-payment'),
+        'title'       => __('Title', 'atl-payment-gateway'),
         'type'        => 'text',
-        'description' => __('The title displayed to the customer at checkout.', 'atl-payment'),
-        'default'     => __('ATL Payment', 'atl-payment'),
+        'description' => __('The title displayed to the customer at checkout.', 'atl-payment-gateway'),
+        'default'     => __('ATL Payment', 'atl-payment-gateway'),
         'desc_tip'    => true,
       ),
       'description'  => array(
-        'title'       => __('Description', 'atl-payment'),
+        'title'       => __('Description', 'atl-payment-gateway'),
         'type'        => 'textarea',
-        'description' => __('The description displayed to the customer at checkout.', 'atl-payment'),
-        'default'     => __('Pay securely using ATL Payment.', 'atl-payment'),
+        'description' => __('The description displayed to the customer at checkout.', 'atl-payment-gateway'),
+        'default'     => __('Pay securely using ATL Payment.', 'atl-payment-gateway'),
       ),
       'supported_currencies' => array(
-        'title'       => __('Supported currencies', 'atl-payment'),
+        'title'       => __('Supported currencies', 'atl-payment-gateway'),
         'type'        => 'text',
-        'description' => __('You can write supported currencies separated by commas. Default: GBP, EUR, USD', 'atl-payment'),
+        'description' => __('You can write supported currencies separated by commas. Default: GBP, EUR, USD', 'atl-payment-gateway'),
         'default'     => "GBP, EUR, USD",
       ),
       'api_url'      => array(
-        'title'       => __('API URL', 'atl-payment'),
+        'title'       => __('API URL', 'atl-payment-gateway'),
         'type'        => 'text',
-        'description' => __('The API URL to send payment requests.', 'atl-payment'),
+        'description' => __('The API URL to send payment requests.', 'atl-payment-gateway'),
         'default'     => 'https://service.atlpay.com/merchant/transaction/init',
         'desc_tip'    => true,
       ),
       'api_key'      => array(
-        'title'       => __('API Key', 'atl-payment'),
+        'title'       => __('API Key', 'atl-payment-gateway'),
         'type'        => 'text',
-        'description' => __('The API key to authenticate the payment requests.', 'atl-payment'),
+        'description' => __('The API key to authenticate the payment requests.', 'atl-payment-gateway'),
         'default'     => '',
         'desc_tip'    => true,
       ),
       'callback_url' => array(
-        'title'       => __('Callback URL', 'atl-payment'),
+        'title'       => __('Callback URL', 'atl-payment-gateway'),
         'type'        => 'textarea',
-        'description' => __('The URL for the payment gateway to call after the payment is processed.<br /> Default:', 'atl-payment') . ' ' . site_url("/checkout/order-received/{order_id}/"),
+        'description' => __('The URL for the payment gateway to call after the payment is processed.<br /> Default:', 'atl-payment-gateway') . ' ' . site_url("/checkout/order-received/{order_id}/"),
         'default'     => site_url("/checkout/order-received/{order_id}/"),
       ),
       'success_redirect' => array(
-        'title'       => __('Successful payment redirect page', 'atl-payment'),
+        'title'       => __('Successful payment redirect page', 'atl-payment-gateway'),
         'type'        => 'text',
-        'description' => __('After the callback is returned, if the operation is successful, redirect to this page.', 'atl-payment'),
+        'description' => __('After the callback is returned, if the operation is successful, redirect to this page.', 'atl-payment-gateway'),
         'default'     => "/",
       ),
       'failed_redirect' => array(
-        'title'       => __('Failed payment redirect page', 'atl-payment'),
+        'title'       => __('Failed payment redirect page', 'atl-payment-gateway'),
         'type'        => 'text',
-        'description' => __('After the callback is returned, if the operation is failed, redirect to this page.', 'atl-payment'),
+        'description' => __('After the callback is returned, if the operation is failed, redirect to this page.', 'atl-payment-gateway'),
         'default'     => "/",
       ),
     );
@@ -160,7 +160,7 @@ class WC_ATL_Payment_Gateway extends WC_Payment_Gateway
       ]
     ];
     if ('yes' === $this->get_option('debug')) {
-      wc_get_logger()->debug('ATL Payment request body.', array('source' => 'atl-payment', 'body' => $body));
+      wc_get_logger()->debug('ATL Payment request body.', array('source' => 'atl-payment-gateway', 'body' => $body));
     }
 
     // Send API request
@@ -175,11 +175,11 @@ class WC_ATL_Payment_Gateway extends WC_Payment_Gateway
     $result = json_decode(wp_remote_retrieve_body($response), true);
 
     if ('yes' === $this->get_option('debug')) {
-      wc_get_logger()->debug('ATL Payment request sent.', array('source' => 'atl-payment', $result['message']));
+      wc_get_logger()->debug('ATL Payment request sent.', array('source' => 'atl-payment-gateway', $result['message']));
     }
 
     if (is_wp_error($response)) {
-      wc_add_notice("<b>" . __('Payment error:', 'atl-payment') . "</b> " . $response->get_error_message(), 'error');
+      wc_add_notice("<b>" . __('Payment error:', 'atl-payment-gateway') . "</b> " . $response->get_error_message(), 'error');
       return;
     }
 
@@ -191,27 +191,32 @@ class WC_ATL_Payment_Gateway extends WC_Payment_Gateway
       );
     }
 
-    wc_add_notice("<b>" . __('Payment error:', 'atl-payment') . "</b> " . $result['message'], 'error');
+    wc_add_notice("<b>" . __('Payment error:', 'atl-payment-gateway') . "</b> " . $result['message'], 'error');
     return;
   }
 
   // Handle the payment gateway callback
   public function check_response()
   {
-    // Debug log
-    if ('yes' === get_option('atl_payment_debug')) {
-      wc_get_logger()->debug('ATL Payment callback received.', array('source' => 'atl-payment'));
+    // Verify nonce before processing GET request
+    $nonce = isset($_GET['_wpnonce']) ? sanitize_text_field(wp_unslash($_GET['_wpnonce'])) : '';
+    if (!wp_verify_nonce($nonce, 'atl_payment_nonce')) {
+      wp_die('Security check failed.', 'ATL Payment', 403);
     }
 
     // Retrieve callback parameters
-    $transaction_code = isset($_GET['transactionCode']) ? sanitize_text_field($_GET['transactionCode']) : '';
-    $success = isset($_GET['success']) ? filter_var($_GET['success'], FILTER_VALIDATE_BOOLEAN) : false;
+    $transaction_code = isset($_GET['transactionCode']) ? sanitize_text_field(wp_unslash($_GET['transactionCode'])) : '';
+    $success = isset($_GET['success']) ? filter_var(wp_unslash($_GET['success']), FILTER_VALIDATE_BOOLEAN) : false;
     $order_id = isset($_GET['order_id']) ? absint($_GET['order_id']) : 0;
 
+    // Debug log
+    if ('yes' === get_option('atl_payment_debug')) {
+      wc_get_logger()->debug('ATL Payment callback received.', array('source' => 'atl-payment-gateway'));
+    }
 
     if (! $order_id || ! $transaction_code) {
       if ('yes' === get_option('atl_payment_debug')) {
-        wc_get_logger()->debug('ATL Payment callback error: Missing order ID or transaction code.', array('source' => 'atl-payment'));
+        wc_get_logger()->debug('ATL Payment callback error: Missing order ID or transaction code.', array('source' => 'atl-payment-gateway'));
       }
       wp_die('Invalid callback request.', 'ATL Payment', array('response' => 400));
     }
@@ -220,7 +225,7 @@ class WC_ATL_Payment_Gateway extends WC_Payment_Gateway
     $order = wc_get_order($order_id);
     if (! $order) {
       if ('yes' === get_option('atl_payment_debug')) {
-        wc_get_logger()->debug("ATL Payment callback error: Order #{$order_id} not found.", array('source' => 'atl-payment'));
+        wc_get_logger()->debug("ATL Payment callback error: Order #{$order_id} not found.", array('source' => 'atl-payment-gateway'));
       }
       wp_die('Order not found.', 'ATL Payment', array('response' => 404));
     }
@@ -228,12 +233,13 @@ class WC_ATL_Payment_Gateway extends WC_Payment_Gateway
 
     // Debug log
     if ('yes' === get_option('atl_payment_debug')) {
-      wc_get_logger()->debug("ATL Payment callback processed for order #{$order_id}. Success: " . ($success ? 'Yes' : 'No'), array('source' => 'atl-payment'));
+      wc_get_logger()->debug("ATL Payment callback processed for order #{$order_id}. Success: " . ($success ? 'Yes' : 'No'), array('source' => 'atl-payment-gateway'));
     }
 
     // Update order status based on payment success or failure
     if ($success) {
-      $order->add_order_note(sprintf(__('ATL Payment successful. Transaction Code: %s', 'atl-payment'), $transaction_code));
+      // translators: %s is the transaction code returned from ATL Payment API.
+      $order->add_order_note(sprintf(__('ATL Payment successful. Transaction Code: %s', 'atl-payment-gateway'), $transaction_code));
       $order->payment_complete();
 
       WC()->cart->empty_cart();
@@ -242,8 +248,9 @@ class WC_ATL_Payment_Gateway extends WC_Payment_Gateway
       wp_redirect(get_option('success_redirect'));
       exit;
     } else {
-      $order->add_order_note(sprintf(__('ATL Payment failed. Transaction Code: %s', 'atl-payment'), $transaction_code));
-      $order->update_status('failed', __('Payment failed via ATL Payment.', 'atl-payment'));
+      // translators: %s is the transaction code returned from ATL Payment API.
+      $order->add_order_note(sprintf(__('ATL Payment failed. Transaction Code: %s', 'atl-payment-gateway'), $transaction_code));
+      $order->update_status('failed', __('Payment failed via ATL Payment.', 'atl-payment-gateway'));
 
       wp_redirect(get_option('failed_redirect'));
       exit;
@@ -257,7 +264,7 @@ class WC_ATL_Payment_Gateway extends WC_Payment_Gateway
   public function is_available()
   {
     if ('yes' === $this->get_option('debug')) {
-      wc_get_logger()->debug('ATL Payment is_available called.', array('source' => 'atl-payment'));
+      wc_get_logger()->debug('ATL Payment is_available called.', array('source' => 'atl-payment-gateway'));
     }
 
     if ('yes' !== $this->get_option('enabled')) {
@@ -276,7 +283,7 @@ class WC_ATL_Payment_Gateway extends WC_Payment_Gateway
 
     if (! in_array(get_woocommerce_currency(), $currencies)) {
       if ('yes' === $this->get_option('debug')) {
-        wc_get_logger()->debug('ATL Payment unavailable due to unsupported currency.', array('source' => 'atl-payment'));
+        wc_get_logger()->debug('ATL Payment unavailable due to unsupported currency.', array('source' => 'atl-payment-gateway'));
       }
       return false;
     }

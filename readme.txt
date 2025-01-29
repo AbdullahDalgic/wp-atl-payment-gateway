@@ -3,7 +3,7 @@ Contributors: abdullahdalgic
 Donate link: https://abdullahdalgic.com.tr
 Tags: woocommerce, payment gateway, payment method, atl, custom payment
 Requires at least: 5.0
-Tested up to: 6.3
+Tested up to: 6.7
 Requires PHP: 7.4
 Stable tag: 1.0.0
 License: GPLv2 or later
